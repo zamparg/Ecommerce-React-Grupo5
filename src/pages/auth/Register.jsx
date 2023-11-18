@@ -41,7 +41,7 @@ export const Register = () => {
         toast({
           title: 'Cuenta creada exitosamente',
           status: 'success',
-          colorScheme: 'pink',
+          colorScheme: 'green',
           duration: 2500,
           isClosable: false,
         })
@@ -52,7 +52,7 @@ export const Register = () => {
       toast({
         title: 'Error al crear la cuenta',
         status: 'error',
-        colorScheme: 'pink',
+        colorScheme: 'green',
         duration: 2500,
         isClosable: false,
       })
@@ -94,12 +94,12 @@ export const Register = () => {
             as={NavLink}
             fontWeight="semibold"
             to="/"
-            _hover={{ color: '#BE3969' }}
+            _hover={{ color: '#008100' }}
           >
             Volver
           </Button>
           <form onSubmit={handleSubmit(onSubmit)}>
-            <Heading as="h1" mb={4} color="#BE3969" textAlign="center">
+            <Heading as="h1" mb={4} color="#008100" textAlign="center">
               Crear cuenta
             </Heading>
             <Button
@@ -167,7 +167,7 @@ export const Register = () => {
                   as={NavLink}
                   fontWeight="semibold"
                   to="/iniciar-sesion"
-                  _hover={{ color: '#BE3969' }}
+                  _hover={{ color: '#008100' }}
                 >
                   Iniciar Sesión
                 </Link>
