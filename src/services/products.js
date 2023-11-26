@@ -5,10 +5,13 @@ import {
   getDoc,
   getDocs,
   query,
+  orderBy,
+  limit,
   where,
 } from 'firebase/firestore'
 
 import { db } from '../firebase/config'
+
 
 export const getAllProducts = async () => {
   const data = await getDocs(collection(db, 'products'))
@@ -23,6 +26,47 @@ export const getAllProducts = async () => {
   })
   return products
 }
+
+// traer 4 productos más buscados --- HACER LOGICA EN BBDD
+export const getMostSearchProducts = async () => {
+
+  const collRef = collection(db, "products");
+  const q = query(collRef, orderBy("name" , "desc"), limit(4));
+
+  const data = await getDocs(q)
+  let products = []
+
+  data.forEach((doc) => {
+    products.push({
+      ...doc.data(),
+      id: doc.id,
+    })
+  })
+
+  return products
+}
+
+// traer últimos 4 productos 
+export const getLatestProducts = async () => {
+
+  const collRef = collection(db, "products");
+  
+  const q = query(collRef, orderBy("name"), limit(3));//orderBy('name'),
+
+  
+  const data = await getDocs(q);
+
+  let products = []
+  data.forEach((doc) => {
+    products.push({
+      ...doc.data(),
+      id: doc.id,
+    })
+  })
+
+  return products
+}
+
 
 export const getProductById = async (id) => {
   const docRef = doc(db, 'products', id)

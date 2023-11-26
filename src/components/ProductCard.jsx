@@ -39,7 +39,7 @@ export const ProductCard = ({ product }) => {
     <Card maxW="sm">
       <CardBody>
         <Link to={'/productos/' + id}>
-          <Image src={image} alt={name} borderRadius="lg" width="100%"  height="400px"/>
+          <Image src={image} alt={name} borderRadius="lg" width="100%"  height="400px" objectFit='cover'/>
         </Link>
         <Stack mt="6" spacing="3">
           <Heading size="md" fontWeight={400}>
