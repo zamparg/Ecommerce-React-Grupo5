@@ -6,11 +6,14 @@ import {
   Image,
   SimpleGrid,
   Text,
+  Center,
 } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 
 import { IsLoading } from '../components/IsLoading'
 import { ProductCard } from '../components/ProductCard'
+import { NewProductCard } from '../components/NewProductCard'
+
 import { getLatestProducts, getMostSearchProducts } from '../services/products'
 
 
@@ -138,16 +141,18 @@ export const Home = () => {
         <Heading as="h2" size="lg">
           Nuevos Ingresos
         </Heading>
+        <Center>
          <SimpleGrid columns={{ base: 1, sm: 1, md: 1, lg: 1 }} gap={2}>
           {errorNew && <Text>Ha ocurrido un error</Text>}
           {loadingNew && <IsLoading />}
           {newProducts.map((product) => (
-            <ProductCard key={product.id} product={product} />
+            <NewProductCard key={product.id} product={product} />
           ))}
           {!loadingNew && !newProducts.length && (
             <Text>No se encontraron productos</Text>
           )}
         </SimpleGrid>
+        </Center>
       </Box>
 
 
