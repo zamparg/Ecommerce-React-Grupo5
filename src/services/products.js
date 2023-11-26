@@ -11,10 +11,18 @@ import {
 } from 'firebase/firestore'
 
 import { db } from '../firebase/config'
+import { filter } from '@chakra-ui/react';
 
 
-export const getAllProducts = async () => {
-  const data = await getDocs(collection(db, 'products'))
+export const getAllProducts = async (filterCondition = null, order=null) => {
+  const collRef = collection(db, "products");
+  let data
+  if (filterCondition){
+    const q = query(collRef, orderBy(filterCondition, order))
+    data=await getDocs(q)
+  }else {
+    data = await getDocs(collRef)
+  }
 
   let products = []
 
