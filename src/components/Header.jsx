@@ -1,5 +1,6 @@
-import { HamburgerIcon } from '@chakra-ui/icons'
+import { HamburgerIcon } from "@chakra-ui/icons";
 import {
+  Badge,
   Button,
   Heading,
   HStack,
@@ -13,21 +14,23 @@ import {
   Portal,
   Show,
   useDisclosure,
-} from '@chakra-ui/react'
-import { useContext } from 'react'
-import { BsBagHeart } from 'react-icons/bs'
-import { FaUserAlt } from 'react-icons/fa'
-import { NavLink } from 'react-router-dom'
+} from "@chakra-ui/react";
+import { useContext } from "react";
+import { BsBagHeart } from "react-icons/bs";
+import { FaUserAlt } from "react-icons/fa";
+import { NavLink } from "react-router-dom";
 
-import { UserContext } from '../context/UserContext'
-import { CartDrawer } from './CartDrawer'
+import { CartContext } from "../context/CartContext";
+import { UserContext } from "../context/UserContext";
+import { CartDrawer } from "./CartDrawer";
 
 export const Header = () => {
-  const { user, handleLogout } = useContext(UserContext)
-  const { isOpen, onOpen, onClose } = useDisclosure()
+  const { user, handleLogout } = useContext(UserContext);
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { cart } = useContext(CartContext);
 
   return (
-    <HStack justifyContent="space-between" p={4}>
+    <HStack justifyContent="space-between" p={4} px={8}>
       <Show below="md">
         <Menu>
           <MenuButton as={IconButton} icon={<HamburgerIcon size={15} />} />
@@ -61,11 +64,11 @@ export const Header = () => {
       </Show>
       <Heading
         color="#BE3969"
-        fontSize={{ base: '18px', sm: '24px', md: '36px', lg: '36px' }}
+        fontSize={{ base: "18px", sm: "24px", md: "36px", lg: "36px" }}
       >
         <Image
           src="/logo6-.png"
-          boxSize={{ base: '40px', sm: '60px', md: '80px', lg: '80px' }}
+          boxSize={{ base: "40px", sm: "60px", md: "80px", lg: "80px" }}
         />
       </Heading>
       <HStack gap={6}>
@@ -75,7 +78,7 @@ export const Header = () => {
               as={NavLink}
               fontWeight="semibold"
               to="/"
-              _hover={{ color: '#008100' }}
+              _hover={{ color: "#008100" }}
             >
               INICIO
             </Link>
@@ -83,7 +86,7 @@ export const Header = () => {
               as={NavLink}
               fontWeight="semibold"
               to="/productos"
-              _hover={{ color: '#008100' }}
+              _hover={{ color: "#008100" }}
             >
               PRODUCTOS
             </Link>
@@ -96,7 +99,7 @@ export const Header = () => {
                 <Link
                   as={NavLink}
                   to="/iniciar-sesion"
-                  _hover={{ color: '#008100' }}
+                  _hover={{ color: "#008100" }}
                 >
                   Iniciar Sesión
                 </Link>
@@ -120,13 +123,30 @@ export const Header = () => {
             )}
           </Show>
           <IconButton
-            _hover={{ color: '#008100' }}
+            _hover={{ color: "#008100" }}
             icon={<BsBagHeart size={20} />}
             onClick={onOpen}
           />
+          {cart.length > 0 && (
+            <Badge
+              position="absolute"
+              top={{ md: 5, base: 3 }}
+              right={5}
+              borderRadius="full"
+              color="white"
+              bg="#008100"
+              w="25px"
+              h="25px"
+              display="flex"
+              alignItems="center"
+              justifyContent="center"
+            >
+              {cart.length}
+            </Badge>
+          )}
         </HStack>
       </HStack>
       <CartDrawer isOpen={isOpen} onClose={onClose} />
     </HStack>
-  )
-}
+  );
+};

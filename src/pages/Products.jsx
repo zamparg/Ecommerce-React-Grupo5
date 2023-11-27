@@ -14,6 +14,7 @@ export const Products = () => {
     name: '',
     category: '',
     maxPrice: '',
+    sortPrice:'',
   })
 
   useEffect(() => {
@@ -36,6 +37,19 @@ export const Products = () => {
             (product) => product.price <= parseInt(filters.maxPrice)
           )
         }
+        if (filters.sortPrice) {
+          if(filters.sortPrice == 'asc') {
+            filteredProducts = filteredProducts.sort(
+              (a, b) => a.price - b.price
+            )
+          }else{
+            if(filters.sortPrice == 'desc') {
+              filteredProducts = filteredProducts.sort(
+                (a, b) =>  b.price - a.price
+              )
+          }
+        }
+        }
         setProducts(filteredProducts)
       } catch (error) {
         setError(true)
@@ -48,7 +62,7 @@ export const Products = () => {
 
   return (
     <>
-      <Filters filters={filters} setFilters={setFilters} />
+      <Filters filters={filters} setFilters={setFilters}/>
       <Flex flexWrap="wrap" justifyContent="center" gap={4} m={6}>
         {error && <Text>Ha ocurrido un error</Text>}
         {loading && <IsLoading />}

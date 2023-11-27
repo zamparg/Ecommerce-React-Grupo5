@@ -10,13 +10,15 @@ import {
   Stack,
   Text,
   useToast,
+  Flex,
+  Spacer,
 } from '@chakra-ui/react'
 import { useContext } from 'react'
 import { Link } from 'react-router-dom'
 
 import { CartContext } from '../context/CartContext'
 
-export const ProductCard = ({ product }) => {
+export const NewProductCard = ({ product }) => {
   const { image, name, price, id } = product
   const { addProduct } = useContext(CartContext)
   const toast = useToast()
@@ -36,19 +38,22 @@ export const ProductCard = ({ product }) => {
   }
 
   return (
-    <Card maxW="sm">
+    <Card size = 'lg' maxW="500px">
       <CardBody>
         <Link to={'/productos/' + id}>
-          <Image src={image} alt={name} borderRadius="lg" width="100%"  height="400px" objectFit='cover'/>
+          <Image src={image} alt={name} borderRadius="lg" width="100%" height="200px" objectFit='cover'/>
         </Link>
-        <Stack mt="6" spacing="3">
+
+          <Flex width="100%" mt="6" alignItems='center'>
           <Heading size="md" fontWeight={400}>
             {name}
           </Heading>
+          <Spacer />
           <Text fontWeight={300} fontSize="2xl">
             ${price}
           </Text>
-        </Stack>
+          </Flex>
+
       </CardBody>
       <Divider />
       <CardFooter>

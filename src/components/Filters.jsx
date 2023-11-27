@@ -10,7 +10,7 @@ export const Filters = ({ filters, setFilters }) => {
   return (
     <SimpleGrid
       w="full"
-      columns={{ base: 1, md: 3 }}
+      columns={{ base: 1, md: 4 }}
       gap={{ base: 4, md: 9 }}
       p={{ base: '20px 20px', md: '20px 80px' }}
     >
@@ -43,6 +43,19 @@ export const Filters = ({ filters, setFilters }) => {
           onChange={(e) => setFilters({ ...filters, maxPrice: e.target.value })}
         />
       </FormControl>
+
+      <FormControl>
+        <FormLabel>Ordenar Por</FormLabel>
+        <Select
+          value={filters.sortPrice}
+          onChange={(e) => setFilters({ ...filters, sortPrice: e.target.value })}
+        >
+          <option value="none" selected>Ninguno</option>
+          <option value="asc">Menor Precio</option>
+          <option value="desc">Mayor Precio</option>
+        </Select>
+      </FormControl>
+
     </SimpleGrid>
   )
 }

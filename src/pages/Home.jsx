@@ -6,31 +6,75 @@ import {
   Image,
   SimpleGrid,
   Text,
+  Center,
 } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 
 import { IsLoading } from '../components/IsLoading'
 import { ProductCard } from '../components/ProductCard'
-import { getAllProducts } from '../services/products'
+import { NewProductCard } from '../components/NewProductCard'
+
+import { getLatestProducts, getMostSearchProducts } from '../services/products'
+
+
 
 export const Home = () => {
-  const [products, setProducts] = useState([])
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(false)
+  // const [products, setProducts] = useState([])
+  // const [loading, setLoading] = useState(true)
+  // const [error, setError] = useState(false)
+
+  const [mostSearchProducts, setMostSearchProducts] = useState([]);
+  const [loadingMost, setLoadingMost] = useState(true);
+  const [errorMost, setErrorMost] = useState(false);
+  const [newProducts, setNewProducts] = useState([]);
+  const [loadingNew, setLoadingNew] = useState(true);
+  const [errorNew, setErrorNew] = useState(false);
 
   useEffect(() => {
-    const getProducts = async () => {
-      try {
-        const products = await getAllProducts()
-        setProducts(products.slice(0, 4))
-      } catch (error) {
-        setError(true)
-      } finally {
-        setLoading(false)
-      }
+  //   const getProducts = async () => {
+  //     try {
+  //       const products = await getLatestProducts()
+  //       setProducts(products)
+  //       console.log('ok')
+  //     } catch (error) {
+  //       setError(true)
+  //     } finally {
+  //       setLoading(false)
+  //     }
+  //   }
+  //   getProducts()
+  // }, [])
+
+  const fetchDataMost = async () => {
+    try {
+      const mostSearchProducts = await getMostSearchProducts();
+      setMostSearchProducts(mostSearchProducts);
+      setLoadingMost(false)
+    } catch (latestError) {
+      setErrorMost(true);
+      setLoadingMost(false); // Asegúrate de establecer loadingLatest en false en caso de error
     }
-    getProducts()
-  }, [])
+  };
+
+  const fetchDataNew = async () => {
+    try {
+      
+      const newProductsData = await getLatestProducts();
+      // Asume que hay una función getNewProducts
+      setNewProducts(newProductsData);
+      setLoadingNew(false)
+    } catch (newError) {
+      console.log(newError)
+      setErrorNew(true);
+      setLoadingNew(false); // Asegúrate de establecer loadingNew en false en caso de error
+    }
+  };
+
+
+  fetchDataMost();
+  fetchDataNew()
+}, []);
+
 
   return (
     <Flex flexDirection="column" m={{ base: '10px', md: '30px' }}>
@@ -82,16 +126,36 @@ export const Home = () => {
           Los más buscados
         </Heading>
         <SimpleGrid columns={{ base: 1, sm: 2, md: 3, lg: 4 }} gap={2}>
-          {error && <Text>Ha ocurrido un error</Text>}
-          {loading && <IsLoading />}
-          {products.map((product) => (
+          {errorMost && <Text>Ha ocurrido un error</Text>}
+          {loadingMost && <IsLoading />}
+          {mostSearchProducts.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
-          {!loading && !products.length && (
+          {!loadingMost && !mostSearchProducts.length && (
             <Text>No se encontraron productos</Text>
           )}
         </SimpleGrid>
       </Box>
+
+      <Box mt={8}>
+        <Heading as="h2" size="lg">
+          Nuevos Ingresos
+        </Heading>
+        <Center>
+         <SimpleGrid columns={{ base: 1, sm: 1, md: 1, lg: 1 }} gap={2}>
+          {errorNew && <Text>Ha ocurrido un error</Text>}
+          {loadingNew && <IsLoading />}
+          {newProducts.map((product) => (
+            <NewProductCard key={product.id} product={product} />
+          ))}
+          {!loadingNew && !newProducts.length && (
+            <Text>No se encontraron productos</Text>
+          )}
+        </SimpleGrid>
+        </Center>
+      </Box>
+
+
     </Flex>
   )
 }
