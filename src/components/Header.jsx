@@ -90,6 +90,14 @@ export const Header = () => {
             >
               PRODUCTOS
             </Link>
+            <Link
+              as={NavLink}
+              fontWeight="semibold"
+              to="/ticket"
+              _hover={{ color: "#008100" }}
+            >
+              TICKET
+            </Link>
           </HStack>
         </Show>
         <HStack gap={6}>

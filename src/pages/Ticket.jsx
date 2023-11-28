@@ -1,38 +1,127 @@
-import { Button, ButtonGroup, Card, CardBody, CardFooter, Divider, Heading, Image, Stack, Text } from "@chakra-ui/react";
-import React from "react";
+import {
+  Box,
+  Button,
+  Card,
+  Flex,
+  FormControl,
+  FormLabel,
+  Image,
+  Input,
+  Show,
+  Text,
+} from "@chakra-ui/react";
+import ticket from "../../public/ticket.png";
+import html2canvas from "html2canvas";
+import React, { useState } from "react";
 
 export const Ticket = () => {
+  const [textname, setTextname] = useState();
+  const [textdni, setTextdni] = useState();
+  const textsname = (e) => {
+    setTextname(e.target.value);
+    console.log(e.target.value);
+  };
+  const textsdni = (e) => {
+    setTextdni(e.target.value);
+    console.log(e.target.value);
+  };
+  const Descargar = (e) => {
+    html2canvas(document.querySelector("#exportar")).then(function (canvas) {
+      let img = canvas.toDataURL("ticket/png");
+      let link = document.createElement("a");
+      link.download = "ticket.png";
+      link.href = img;
+      link.click();
+    });
+  };
   return (
-    <Card maxW="sm">
-      <CardBody>
-        <Image
-          src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-          alt="Green double couch with wooden legs"
-          borderRadius="lg"
-        />
-        <Stack mt="6" spacing="3">
-          <Heading size="md">Living room Sofa</Heading>
-          <Text>
-            This sofa is perfect for modern tropical spaces, baroque inspired
-            spaces, earthy toned spaces and for people who love a chic design
-            with a sprinkle of vintage design.
-          </Text>
-          <Text color="blue.600" fontSize="2xl">
-            $450
-          </Text>
-        </Stack>
-      </CardBody>
-      <Divider />
-      <CardFooter>
-        <ButtonGroup spacing="2">
-          <Button variant="solid" colorScheme="blue">
-            Buy now
-          </Button>
-          <Button variant="ghost" colorScheme="blue">
-            Add to cart
-          </Button>
-        </ButtonGroup>
-      </CardFooter>
-    </Card>
+    <>
+      <Show breakpoint='(max-width: 450px)'>
+        <Flex flexWrap="wrap" justifyContent="center">
+          <Card w={700} px="20" py="10" gap={6}>
+            <Text fontSize="md" pb="2" textAlign="center">
+              Rellená los campos con tus datos exigidos para generar el ticket.
+            </Text>
+            <FormControl isRequired>
+              <FormLabel>Nombre(s) y Apellido(s)</FormLabel>
+              <Input
+                onChange={textsname}
+                placeholder="Nombre(s) y Apellido(s)"
+              />
+            </FormControl>
+            <FormControl isRequired>
+              <FormLabel>DNI (Documento Nacional de Identidad)</FormLabel>
+              <Input
+                onChange={textsdni}
+                placeholder="DNI (Documento Nacional de Identidad)"
+              />
+            </FormControl>
+            <Box id="exportar">
+              <Text pos="absolute" top="380" left="27%" fontSize='7'>
+                {textname}
+              </Text>
+              <Text pos="absolute" top="400" left="27%" fontSize='7'>
+                {textdni}
+              </Text>
+              <Image src={ticket} />
+            </Box>
+            <Button
+              onClick={Descargar}
+              size="md"
+              colorScheme="teal"
+              variant="outline"
+            >
+              Descargar
+            </Button>
+            <Text fontSize="xs" textAlign="center">
+              Válido sólo un ticket de regalo por persona. No es acumulable.
+            </Text>
+          </Card>
+        </Flex>
+      </Show>
+      <Show breakpoint='(min-width: 450px)'>
+        <Flex flexWrap="wrap" justifyContent="center">
+          <Card w={700} px="20" py="10" gap={6}>
+            <Text fontSize="md" pb="2" textAlign="center">
+              Rellená los campos con tus datos exigidos para generar el ticket.
+            </Text>
+            <FormControl isRequired>
+              <FormLabel>Nombre(s) y Apellido(s)</FormLabel>
+              <Input
+                onChange={textsname}
+                placeholder="Nombre(s) y Apellido(s)"
+              />
+            </FormControl>
+            <FormControl isRequired>
+              <FormLabel>DNI (Documento Nacional de Identidad)</FormLabel>
+              <Input
+                onChange={textsdni}
+                placeholder="DNI (Documento Nacional de Identidad)"
+              />
+            </FormControl>
+            <Box id="exportar">
+              <Text pos="absolute" top="350" left="20%" textAlign="center">
+                {textname}
+              </Text>
+              <Text pos="absolute" top="400" left="20%">
+                {textdni}
+              </Text>
+              <Image src={ticket} />
+            </Box>
+            <Button
+              onClick={Descargar}
+              size="md"
+              colorScheme="teal"
+              variant="outline"
+            >
+              Descargar
+            </Button>
+            <Text fontSize="xs" textAlign="center">
+              Válido sólo un ticket de regalo por persona. No es acumulable.
+            </Text>
+          </Card>
+        </Flex>
+      </Show>
+    </>
   );
 };
