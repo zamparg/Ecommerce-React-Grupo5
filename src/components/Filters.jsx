@@ -30,7 +30,7 @@ export const Filters = ({ filters, setFilters }) => {
           value={filters.category}
           onChange={(e) => setFilters({ ...filters, category: e.target.value })}
         >
-          <option value="seleccionar">Seleccionar</option>
+          <option value="seleccionar" defaultValue>Seleccionar</option>
           <option value="Calzado">Calzado</option>
           <option value="Accesorios">Accesorios</option>
         </Select>
@@ -50,7 +50,7 @@ export const Filters = ({ filters, setFilters }) => {
           value={filters.sortPrice}
           onChange={(e) => setFilters({ ...filters, sortPrice: e.target.value })}
         >
-          <option value="none" selected>Ninguno</option>
+          <option value="none" defaultValue>Ninguno</option>
           <option value="asc">Menor Precio</option>
           <option value="desc">Mayor Precio</option>
         </Select>
