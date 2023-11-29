@@ -7,8 +7,10 @@ import {
   SimpleGrid,
   Text,
   Center,
+  Container,
 } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
+import { NavLink } from "react-router-dom";
 
 import { IsLoading } from '../components/IsLoading'
 import { ProductCard } from '../components/ProductCard'
@@ -77,6 +79,7 @@ export const Home = () => {
 
 
   return (
+    <>
     <Flex flexDirection="column" m={{ base: '10px', md: '30px' }}>
       <Flex
         flexDirection={{ base: 'column', md: 'row' }}
@@ -157,5 +160,30 @@ export const Home = () => {
 
 
     </Flex>
+    <Container maxW="2x1" bgColor="#E8E8E8">
+        <Flex justifyContent="center">
+          <Box textAlign="center" maxW="1000" py="10">
+            <Heading pb="2">¡TENEMOS UN TICKET DE REGALO PARA VOS!</Heading>
+            <Text fontSize="20" pb="4">
+              Desde Zeze queremos que tengas una gran oportunidad para comprar
+              en nuestra tienda y con la máxima prioridad de transacción.
+            </Text>
+            <Button
+              as={NavLink}
+              to="/ticket"
+              rel="noopener noreferrer"
+              colorScheme="blackAlpha"
+              variant="outline"
+              border="2px"
+              borderRadius="50px"
+              p={{ base: 2, md: 5 }}
+              size={{ base: "sm", md: "md" }}
+            >
+              IR AL TICKET
+            </Button>
+          </Box>
+        </Flex>
+      </Container>
+    </>
   )
 }
