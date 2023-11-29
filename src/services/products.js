@@ -7,6 +7,8 @@ import {
   query,
   orderBy,
   limit,
+  updateDoc,
+  increment,
   where,
 } from 'firebase/firestore'
 
@@ -39,7 +41,7 @@ export const getAllProducts = async (filterCondition = null, order=null) => {
 export const getMostSearchProducts = async () => {
 
   const collRef = collection(db, "products");
-  const q = query(collRef, orderBy("name" , "desc"), limit(4));
+  const q = query(collRef, orderBy("searchCounter" , "desc"), limit(4));
 
   const data = await getDocs(q)
   let products = []
@@ -59,7 +61,7 @@ export const getLatestProducts = async () => {
 
   const collRef = collection(db, "products");
   
-  const q = query(collRef, orderBy("name"), limit(3));//orderBy('name'),
+  const q = query(collRef, orderBy("createdAt"), limit(3));//orderBy('name'),
 
   
   const data = await getDocs(q);
@@ -75,22 +77,32 @@ export const getLatestProducts = async () => {
   return products
 }
 
-
+//trae producto por ID
 export const getProductById = async (id) => {
   const docRef = doc(db, 'products', id)
   const docSnap = await getDoc(docRef)
-
+  
   if (docSnap.exists()) {
+    // Incrementar el contador en la base de datos
+    await updateDoc(docRef, { searchCounter: increment(1) });
+
+
     const productData = docSnap.data()
     const product = { ...productData, id: docSnap.id }
     return product
   } else {
     throw new Error('El producto no existe')
   }
+
 }
 
 export const createOrder = async (order) => {
   const doc = await addDoc(collection(db, 'orders'), order)
+  return doc
+}
+
+export const createContact = async (contact) => {
+  const doc = await addDoc(collection(db, 'contact'), contact)
   return doc
 }
 

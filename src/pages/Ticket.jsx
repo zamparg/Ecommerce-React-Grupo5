@@ -10,7 +10,7 @@ import {
   Show,
   Text,
 } from "@chakra-ui/react";
-import ticket from "../../public/ticket.png";
+import ticket from "/ticket.png";
 import html2canvas from "html2canvas";
 import React, { useState } from "react";
 

@@ -17,6 +17,7 @@ import { Orders } from './pages/Orders'
 import { ProductDetails } from './pages/ProductDetails'
 import { Products } from './pages/Products'
 import { Ticket } from './pages/Ticket'
+import { Contact } from './pages/Contact'
 
 function App() {
   const { isLoading } = useContext(UserContext)
@@ -27,6 +28,7 @@ function App() {
     <Routes>
       <Route element={<AppLayout />}>
         <Route path="/" element={<Home />} />
+        <Route path="/contacto" element={<Contact />} />
         <Route path="/productos" element={<Products />} />
         <Route path="/ticket" element={<Ticket />} />
         <Route path="/productos/:id" element={<ProductDetails />} />
