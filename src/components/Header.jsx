@@ -65,10 +65,12 @@ export const Header = () => {
       <Heading
         color="#BE3969"
         fontSize={{ base: "18px", sm: "24px", md: "36px", lg: "36px" }}
+        as={NavLink} to="/"
       >
         <Image
           src="/logo6-.png"
           boxSize={{ base: "40px", sm: "60px", md: "80px", lg: "80px" }}
+          
         />
       </Heading>
       <HStack gap={6}>

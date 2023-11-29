@@ -101,6 +101,11 @@ export const createOrder = async (order) => {
   return doc
 }
 
+export const createContact = async (contact) => {
+  const doc = await addDoc(collection(db, 'contact'), contact)
+  return doc
+}
+
 export const getOrderByUserId = async (id) => {
   const data = await getDocs(
     query(collection(db, 'orders'), where('id', '==', id))
