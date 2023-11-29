@@ -42,6 +42,9 @@ export const Header = () => {
               <MenuItem as={NavLink} to="/productos">
                 PRODUCTOS
               </MenuItem>
+              <MenuItem as={NavLink} to="/contacto">
+                CONTACTO
+              </MenuItem>
               {!user ? (
                 <>
                   <MenuItem as={NavLink} to="/iniciar-sesion">
@@ -65,12 +68,12 @@ export const Header = () => {
       <Heading
         color="#BE3969"
         fontSize={{ base: "18px", sm: "24px", md: "36px", lg: "36px" }}
-        as={NavLink} to="/"
+        as={NavLink}
+        to="/"
       >
         <Image
           src="/logo6-.png"
           boxSize={{ base: "40px", sm: "60px", md: "80px", lg: "80px" }}
-          
         />
       </Heading>
       <HStack gap={6}>
@@ -91,6 +94,14 @@ export const Header = () => {
               _hover={{ color: "#008100" }}
             >
               PRODUCTOS
+            </Link>
+            <Link
+              as={NavLink}
+              fontWeight="semibold"
+              to="/contacto"
+              _hover={{ color: "#008100" }}
+            >
+              CONTACTO
             </Link>
           </HStack>
         </Show>
