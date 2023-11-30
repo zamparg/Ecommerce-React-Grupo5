@@ -29,14 +29,25 @@ El repositorio consta de dos carpetas principales:
 Para ejecutar el proyecto, sigue estos pasos:
 
 1. Abre una consola de comandos y navega al directorio `ecommerce`.
-2. Ejecuta el siguiente comando para iniciar el servidor del eCommerce:
+2. Ejecuta el siguiente comando para instalar las dependencias del eCommerce:
+
+    ```bash
+    npm install
+    ```
+3. Ejecuta el siguiente comando para iniciar el servidor del eCommerce:
 
     ```bash
     npm run dev
     ```
 
-3. Abre otra consola de comandos y navega al directorio `mercadopago`.
-4. Ejecuta el siguiente comando para iniciar el servidor de MercadoPago:
+4. Abre otra consola de comandos y navega al directorio `mercadopago`.
+5. Ejecuta el siguiente comando para instalar las dependencias de MercadoPago:
+
+    ```bash
+    npm install
+    ```
+    
+6. Ejecuta el siguiente comando para iniciar el servidor de MercadoPago:
 
     ```bash
     npm start
