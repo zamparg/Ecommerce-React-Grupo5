@@ -31,8 +31,11 @@ export const Filters = ({ filters, setFilters }) => {
           onChange={(e) => setFilters({ ...filters, category: e.target.value })}
         >
           <option value="seleccionar" defaultValue>Seleccionar</option>
-          <option value="Calzado">Calzado</option>
-          <option value="Accesorios">Accesorios</option>
+          <option value="Remeras">Remeras</option>
+          <option value="Conjuntos">Conjuntos</option>
+          <option value="Sacos">Sacos</option>
+          <option value="Vestidos">Vestidos</option>
+          <option value="Camisas">Camisas</option>
         </Select>
       </FormControl>
       <FormControl>
