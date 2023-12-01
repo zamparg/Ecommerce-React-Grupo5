@@ -1,8 +1,60 @@
-# React + Vite
+# Zeze eCommerce
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Zeze es un proyecto de eCommerce desarrollado por el grupo 5 del programa Codo a Codo 4.0 REACT.
 
-Currently, two official plugins are available:
+## Integrantes del Grupo 5
+- Mercedes Estela Scipioni
+- Ivan Gonzalo Tapia
+- Gastón Zampar
+- Orlando Trovato
+- Nancy Clarisa Rojas
+- Laura Huallpa
+- Eugenia Yanina Isasmendi
+- Wanda Parra
+- Clara Ibarzabal
+- Guillermo Jose Zurita Villalonga
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Descripción del Proyecto
+
+El proyecto está desarrollado en React utilizando Vite y Chakra UI. Además, para la implementación de MercadoPago, se utiliza Express y la API de Mercado Pago.
+
+## Estructura del Proyecto
+
+El repositorio consta de dos carpetas principales:
+1. **ecommerce:** Contiene el código fuente del eCommerce.
+2. **mercadopago:** Contiene el servidor para la integración de MercadoPago.
+
+## Puesta en Marcha
+
+Para ejecutar el proyecto, sigue estos pasos:
+
+1. Abre una consola de comandos y navega al directorio `ecommerce`.
+2. Ejecuta el siguiente comando para instalar las dependencias del eCommerce:
+
+    ```bash
+    npm install
+    ```
+3. Ejecuta el siguiente comando para iniciar el servidor del eCommerce:
+
+    ```bash
+    npm run dev
+    ```
+
+4. Abre otra consola de comandos y navega al directorio `mercadopago`.
+5. Ejecuta el siguiente comando para instalar las dependencias de MercadoPago:
+
+    ```bash
+    npm install
+    ```
+    
+6. Ejecuta el siguiente comando para iniciar el servidor de MercadoPago:
+
+    ```bash
+    npm start
+    ```
+
+Con estos pasos, el proyecto debería estar en funcionamiento.
+
+
+¡Gracias por leer. Zeze eCommerce! 🚀
+

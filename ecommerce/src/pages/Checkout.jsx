@@ -20,6 +20,8 @@ import { CartContext } from '../context/CartContext'
 import { UserContext } from '../context/UserContext'
 import { createOrder } from '../services/products'
 
+import axios from "axios";
+
 export const Checkout = () => {
   const { cart, clearCart, cartTotal } = useContext(CartContext)
   const { user } = useContext(UserContext)
@@ -50,18 +52,28 @@ export const Checkout = () => {
       })
       navigate('/mi-cuenta/pedidos')
       toast({
-        title: 'Tu orden fue creada con éxito',
+        title: 'Tu orden fue creada con éxito, seras redirigido a la pasarela de pago',
         status: 'success',
-        colorScheme: 'pink',
+        colorScheme: 'green',
         duration: 2500,
       })
+      
       clearCart()
+      FuncionComprarProductos()
     } catch (error) {
       setError(true)
     } finally {
       setLoading(false)
     }
   }
+    
+  const FuncionComprarProductos = async () => {
+
+    const response = await axios.post("http://localhost:5172/Mercado_Pago", cart);
+
+    window.location.href = response.data;
+    console.log(response.data);
+  };
 
   return (
     <SimpleGrid p={{ base: '0', md: '24px' }}>
@@ -75,7 +87,9 @@ export const Checkout = () => {
           <Stack>
             {cart.map((product) => (
               <CartItem key={product.id} product={product} />
+              
             ))}
+            
           </Stack>
         )}
         <Stack>
@@ -179,6 +193,7 @@ export const Checkout = () => {
                 }}
                 fontSize={{ base: '11px', sm: '18px', md: '18px', lg: '18px' }}
                 isDisabled={!isDirty}
+                //onClick={() => FuncionComprarProductos()}
               >
                 {loading ? 'Confirmando ...' : 'Confirmar Compra'}
               </Button>
