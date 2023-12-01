@@ -16,6 +16,8 @@ import { IsLoading } from '../components/IsLoading'
 import { ProductCard } from '../components/ProductCard'
 import { NewProductCard } from '../components/NewProductCard'
 
+import 'animate.css';
+
 import { getLatestProducts, getMostSearchProducts } from '../services/products'
 
 
@@ -94,6 +96,7 @@ export const Home = () => {
       >
         <Box>
           <Heading
+            className='animate__animated animate__fadeInLeft'
             as="h1"
             fontWeight="normal"
             color="#000000"
@@ -103,6 +106,7 @@ export const Home = () => {
             <b>TECNOLOGIAS WEB.</b>
           </Heading>
           <Button
+            className='animate__animated animate__fadeInLeft'
             as="a"
             href="https://inscripcionesagencia.bue.edu.ar/codoacodo/"
             target="_blank"
@@ -119,6 +123,7 @@ export const Home = () => {
           </Button>
         </Box>
         <Image
+          className='animate__animated animate__fadeInRight'
           width="340px"
           src="/logo6-.svg"
           alt="persona comprando"
@@ -163,7 +168,7 @@ export const Home = () => {
     <Container maxW="2x1" bgColor="#E8E8E8">
         <Flex justifyContent="center">
           <Box textAlign="center" maxW="1000" py="10">
-            <Heading pb="2">¡TENEMOS UN TICKET DE REGALO PARA VOS!</Heading>
+            <Heading className='animate__animated animate__fadeInDown' pb="2">¡TENEMOS UN TICKET DE REGALO PARA VOS!</Heading>
             <Text fontSize="20" pb="4">
               Desde Zeze queremos que tengas una gran oportunidad para comprar
               en nuestra tienda y con la máxima prioridad de transacción.
