@@ -36,6 +36,8 @@ export const Filters = ({ filters, setFilters }) => {
           <option value="Sacos">Sacos</option>
           <option value="Vestidos">Vestidos</option>
           <option value="Camisas">Camisas</option>
+          <option value="Sudaderas">Sudaderas</option>
+          <option value="Camperas">Camperas</option>
         </Select>
       </FormControl>
       <FormControl>
