@@ -22,7 +22,7 @@ import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai'
 import { FcGoogle } from 'react-icons/fc'
 import { NavLink, useNavigate } from 'react-router-dom'
 
-import { loginWithEmail, loginWithGoogle, isAdminUser } from '../../services/auth'
+import { loginWithEmail, loginWithGoogle } from '../../services/auth'
 
 export const Login = () => {
   const { register, handleSubmit, formState } = useForm()
@@ -37,8 +37,6 @@ export const Login = () => {
   const onSubmit = async (data) => {
     try {
       const user = await loginWithEmail(data)
-      const isAdmin = await isAdminUser(user.email)
-      console.log(user)
       if (user) {
         navigate('/productos')
         toast({
@@ -71,8 +69,6 @@ export const Login = () => {
   const handleLoginWithGoogle = async () => {
     try {
       const user = await loginWithGoogle()
-      
-      const isAdmin = await isAdmin(user.email)
 
       if (user) {
         navigate('/productos')

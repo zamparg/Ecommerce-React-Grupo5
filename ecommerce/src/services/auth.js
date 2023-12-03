@@ -64,14 +64,14 @@ export const loginWithGoogle = async () => {
 }
 
   export const isAdminUser = async (email) => {
-    console.log('query1')
+
     const adminQuery = query(collection(db, 'admin'), where('email', '==', email));
-    console.log('query1')
+
 
     const querySnapshot = await getDocs(adminQuery);
 
   // Verificar si hay algún documento que cumple con la condición
   const exists = querySnapshot.size > 0;
-  console.log(exists);
+  
   return exists;
   }
