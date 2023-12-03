@@ -26,6 +26,8 @@ import { CartDrawer } from "./CartDrawer";
 
 export const Header = () => {
   const { user, handleLogout } = useContext(UserContext);
+  const { admin } = useContext(UserContext);
+
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { cart } = useContext(CartContext);
 
@@ -45,6 +47,9 @@ export const Header = () => {
               <MenuItem as={NavLink} to="/contacto">
                 CONTACTO
               </MenuItem>
+              {admin ? (<MenuItem as={NavLink} to="/nuevo-producto">
+                NUEVO PRODUCTO
+              </MenuItem>) : null}
               {!user ? (
                 <>
                   <MenuItem as={NavLink} to="/iniciar-sesion">
@@ -111,6 +116,17 @@ export const Header = () => {
             >
               CONTACTO
             </Link>
+
+            {admin ? (<Link
+              as={NavLink}
+              fontWeight="semibold"
+              to="/nuevo-producto"
+              _hover={{ color: "#008100" }}
+            >
+              NUEVO PRODUCTO
+            </Link>) : null}
+
+
           </HStack>
         </Show>
         <HStack gap={6}>

@@ -4,7 +4,7 @@ import {
   FormErrorMessage,
   FormLabel,
   Heading,
-  HStack,
+  Select,
   Textarea,
   Input,
   SimpleGrid,
@@ -16,31 +16,36 @@ import {
 import { useContext, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
-import { createContact } from '../services/products'
+import {  createProduct } from '../services/products'
 
 
-export const Contact = () => {
+export const NewProduct = () => {
  
-  const { register, handleSubmit, formState } = useForm()
+  const { register, handleSubmit, reset, formState } = useForm()
+
   const { errors, isDirty } = formState
 
   const toast = useToast()
 
   const [error, setError] = useState(false)
   const [loading, setLoading] = useState(false)
-  const navigate = useNavigate()
+ 
 
-  const onSubmitOrder = async (data) => {
+  const onSubmitProduct = async (data) => {
     setLoading(true)
     try {
-      await createContact({
+      await createProduct({
         name: data.name,
-        email: data.email,
-        comment: data.comment,
+        category:data.category,
+        image: data.image, 
+        isNew: true,
+        price: data.price,
+        description: data.description,
+        searchCounter:0
       })
-      navigate('/')
+      reset();
       toast({
-        title: 'Tu Mensaje fue enviado con éxito',
+        title: 'Tu Producto fue creado con éxito',
         status: 'success',
         colorScheme: 'pink',
         duration: 2500,
@@ -58,12 +63,11 @@ export const Contact = () => {
     <Flex flexWrap="wrap" justifyContent="center" >
     <SimpleGrid p={{ base: '0', md: '24px' }} width={{ base: '75%', md: '40%' }}>
       <Heading as="h2" size="lg" fontWeight="normal" pl={6}>
-        Contacto
+        Nuevo Producto
       </Heading>
       <SimpleGrid p={6} gap={6} columns={{ base: 1, md: 1 }}>
-
         <Stack>
-          <form onSubmit={handleSubmit(onSubmitOrder)}>
+          <form onSubmit={handleSubmit(onSubmitProduct)}>
             <SimpleGrid gap={4}>
 
               <FormControl isInvalid={errors.name}>
@@ -84,34 +88,68 @@ export const Contact = () => {
                 />
                 <FormErrorMessage>{errors.name?.message}</FormErrorMessage>
               </FormControl>
-              <FormControl isInvalid={errors.email}>
-                <FormLabel htmlFor="email">Email</FormLabel>
+              <FormControl>
+        <FormLabel>Categoría</FormLabel>
+        <Select  {...register('category', {
+                    required: 'Este campo es requerido'})}>
+          <option value="seleccionar" defaultValue>Seleccionar</option>
+          <option value="Remeras">Remeras</option>
+          <option value="Conjuntos">Conjuntos</option>
+          <option value="Sacos">Sacos</option>
+          <option value="Vestidos">Vestidos</option>
+          <option value="Camisas">Camisas</option>
+          <option value="Sudaderas">Sudaderas</option>
+          <option value="Camperas">Camperas</option>
+        </Select>
+      </FormControl>
+
+      <FormControl isInvalid={errors.image}>
+                <FormLabel htmlFor="image">Imágen (url)</FormLabel>
                 <Input
-                  type="email"
-                  name="email"
-                  id="email"
+                  type="text"
+                  name="image"
+                  id="image"
                   size="sm"
-                  
-                  {...register('email', {
+                  autoComplete="off"
+                  {...register('image', {
                     required: 'Este campo es requerido',
-                    pattern: {
-                      value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-                      message: 'Este email no es válido',
+                    minLength: {
+                      value: 3,
+                      message: 'El mínimo de caracteres es 3',
                     },
                   })}
                 />
-                <FormErrorMessage>{errors.email?.message}</FormErrorMessage>
+                <FormErrorMessage>{errors.image?.message}</FormErrorMessage>
               </FormControl>
 
-              <FormControl isInvalid={errors.comment}>
-                <FormLabel htmlFor="address">Mensaje</FormLabel>
+      <FormControl isInvalid={errors.price}>
+                <FormLabel htmlFor="price">Price</FormLabel>
+                <Input
+                  type="number"
+                  name="price"
+                  id="price"
+                  size="sm"
+                  
+                  {...register('price', {
+                    required: 'Este campo es requerido',
+                    pattern: {
+                      // value: /@[0-9.,-]/,
+                      message: 'Este precio no es válido',
+                    },
+                  })}
+                />
+                <FormErrorMessage>{errors.price?.message}</FormErrorMessage>
+              </FormControl>
+
+              <FormControl isInvalid={errors.description}>
+                <FormLabel htmlFor="address">Descripción</FormLabel>
                 <Textarea
-                    placeholder='Mensaje'
-                    name="comment"
-                    id="comment"
+                    placeholder='Descripción'
+                    name="description"
+                    id="description"
                     size='sm'
                     autoComplete="off"
-                    {...register('comment', {
+                    {...register('description', {
                       required: 'Este campo es requerido',
                       minLength: {
                         value: 25,
@@ -119,7 +157,7 @@ export const Contact = () => {
                       },
                     })}
                   />
-                <FormErrorMessage>{errors.comment?.message}</FormErrorMessage>
+                <FormErrorMessage>{errors.description?.message}</FormErrorMessage>
               </FormControl>
              
               {error && <Text>Se produjo un error</Text>}

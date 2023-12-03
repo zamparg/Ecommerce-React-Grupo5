@@ -100,6 +100,11 @@ export const createOrder = async (order) => {
   const doc = await addDoc(collection(db, 'orders'), order)
   return doc
 }
+export const createProduct = async (product) => {
+  const doc = await addDoc(collection(db, 'products'), product)
+  return doc
+}
+
 
 export const createContact = async (contact) => {
   const doc = await addDoc(collection(db, 'contact'), contact)
