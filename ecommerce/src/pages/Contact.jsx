@@ -9,6 +9,7 @@ import {
   Input,
   SimpleGrid,
   Stack,
+  Flex,
   Text,
   useToast,
 } from '@chakra-ui/react'
@@ -55,11 +56,12 @@ export const Contact = () => {
   }
 
   return (
-    <SimpleGrid p={{ base: '0', md: '24px' }}>
+    <Flex flexWrap="wrap" justifyContent="center" >
+    <SimpleGrid p={{ base: '0', md: '24px' }} width={{ base: '75%', md: '40%' }}>
       <Heading as="h2" size="lg" fontWeight="normal" pl={6}>
         Contacto
       </Heading>
-      <SimpleGrid p={6} gap={6} columns={{ base: 1, md: 2 }}>
+      <SimpleGrid p={6} gap={6} columns={{ base: 1, md: 1 }}>
 
         <Stack>
           <form onSubmit={handleSubmit(onSubmitOrder)}>
@@ -144,5 +146,6 @@ export const Contact = () => {
         </Stack>
       </SimpleGrid>
     </SimpleGrid>
+    </Flex>
   )
 }
