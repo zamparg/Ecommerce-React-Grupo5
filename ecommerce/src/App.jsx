@@ -18,6 +18,7 @@ import { ProductDetails } from './pages/ProductDetails'
 import { Products } from './pages/Products'
 import { Ticket } from './pages/Ticket'
 import { Contact } from './pages/Contact'
+import { NewProduct } from './pages/NewProduct'
 
 function App() {
   const { isLoading } = useContext(UserContext)
@@ -33,11 +34,12 @@ function App() {
         <Route path="/ticket" element={<Ticket />} />
         <Route path="/productos/:id" element={<ProductDetails />} />
         <Route element={<ProtegedRoute />}>
+          <Route path="/nuevo-producto" element={<NewProduct />} />
           <Route path="/finalizar-compra" element={<Checkout />} />
           <Route path="/mi-cuenta" element={<Account />}>
-            <Route path="pedidos" element={<Orders />} />
-          </Route>
+          <Route path="pedidos" element={<Orders />} />
         </Route>
+      </Route>
       </Route>
       <Route element={<NotFoundLayout />}>
         <Route path="*" element={<NotFound />} />

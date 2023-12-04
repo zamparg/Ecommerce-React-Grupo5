@@ -69,6 +69,7 @@ export const Login = () => {
   const handleLoginWithGoogle = async () => {
     try {
       const user = await loginWithGoogle()
+
       if (user) {
         navigate('/productos')
         toast({

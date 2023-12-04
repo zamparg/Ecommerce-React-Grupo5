@@ -5,6 +5,15 @@ import {
   signInWithPopup,
 } from 'firebase/auth'
 
+import {
+  collection,
+  getDocs,
+  query,
+  where,
+} from 'firebase/firestore'
+
+
+import { db } from '../firebase/config'
 import { auth } from '../firebase/config'
 
 export const loginWithEmail = async ({ email, password }) => {
@@ -53,3 +62,16 @@ export const loginWithGoogle = async () => {
     console.log(errorCode, errorMessage)
   }
 }
+
+  export const isAdminUser = async (email) => {
+
+    const adminQuery = query(collection(db, 'admin'), where('email', '==', email));
+
+
+    const querySnapshot = await getDocs(adminQuery);
+
+  // Verificar si hay algún documento que cumple con la condición
+  const exists = querySnapshot.size > 0;
+  
+  return exists;
+  }
