@@ -1,3 +1,4 @@
+/*footer*/
 import { Flex, HStack, Text } from "@chakra-ui/react";
 export const Footer = () => {
   return (
