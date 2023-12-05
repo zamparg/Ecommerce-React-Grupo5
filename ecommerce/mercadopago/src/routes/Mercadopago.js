@@ -10,7 +10,7 @@ mercadopago.configure({
 Mercado_Pago.post("/", async (req, res) => {
   try {
     const cart = req.body;
-    //console.log(cart);
+    console.log(cart);
     const arrayProductos = cart.map((product) => ({
       id: product.id,
       title: product.name,
