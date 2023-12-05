@@ -105,6 +105,27 @@ export const createProduct = async (product) => {
   return doc
 }
 
+export const updateproduct = async (id, product) => {
+  const docRef = doc(db, 'products', id)
+  const docSnap = await getDoc(docRef)
+
+ if (docSnap.exists()) {
+    // Incrementar el contador en la base de datos
+    await updateDoc(docRef, { ...product });
+    const productData = docSnap.data()
+    const prod= { ...productData, id: docSnap.id }
+    return prod
+  } else {
+    throw new Error('El producto no existe')
+  }
+}
+
+
+
+
+
+
+
 
 export const createContact = async (contact) => {
   const doc = await addDoc(collection(db, 'contact'), contact)

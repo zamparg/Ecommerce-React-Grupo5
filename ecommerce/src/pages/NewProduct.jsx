@@ -13,15 +13,21 @@ import {
   Text,
   useToast,
 } from '@chakra-ui/react'
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
-import {  createProduct } from '../services/products'
+import {  createProduct, updateproduct } from '../services/products'
+import { useParams } from 'react-router-dom'
+import { getProductById } from '../services/products'
+
 
 
 export const NewProduct = () => {
- 
-  const { register, handleSubmit, reset, formState } = useForm()
+  const { id } = useParams()
+  const [product, setProduct] = useState(null)
+
+
+  const { register, handleSubmit, reset, formState, setValue  } = useForm()
 
   const { errors, isDirty } = formState
 
@@ -31,8 +37,62 @@ export const NewProduct = () => {
   const [loading, setLoading] = useState(false)
  
 
+    useEffect(() => {
+      const getData = async () => {
+        console.log(id)
+        if(id){
+        try {
+          const productData = await getProductById(id)
+          setProduct(productData)
+          if (productData && id) {
+            const { name, category, image, price, description } = productData
+
+            // Establecer los valores iniciales usando setValue
+            setValue('name', name)
+            setValue('category', category)
+            setValue('image', image)
+            setValue('price', price)
+            setValue('description', description)
+          }
+        } catch (error) {
+          setError(true)
+        } finally {
+          setLoading(false)
+        }
+      }else {
+        reset();
+      }
+      }
+      getData()
+    }, [id])
+
+  
+  
   const onSubmitProduct = async (data) => {
     setLoading(true)
+  if(id){
+    try {
+    await updateproduct(id, {
+      name: data.name,
+      category:data.category,
+      image: data.image, 
+      price: data.price,
+      description: data.description,
+    })
+    toast({
+      title: 'Tu Producto fue actualizado con éxito',
+      status: 'success',
+      colorScheme: 'pink',
+      duration: 2500,
+    })
+  
+  } catch (error) {
+    console.log(error)
+    setError(true)
+  } finally {
+    setLoading(false)
+  }
+  }else {
     try {
       await createProduct({
         name: data.name,
@@ -58,12 +118,14 @@ export const NewProduct = () => {
       setLoading(false)
     }
   }
+  }
+
 
   return (
     <Flex flexWrap="wrap" justifyContent="center" >
     <SimpleGrid p={{ base: '0', md: '24px' }} width={{ base: '75%', md: '40%' }}>
       <Heading as="h2" size="lg" fontWeight="normal" pl={6}>
-        Nuevo Producto
+        {id? "Editar Producto":"Nuevo Producto" }
       </Heading>
       <SimpleGrid p={6} gap={6} columns={{ base: 1, md: 1 }}>
         <Stack>
