@@ -19,7 +19,8 @@ import {
 } from '@chakra-ui/react'
 import { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-
+import { UserContext } from "../context/UserContext";
+import { NavLink } from "react-router-dom";
 import { CartContext } from '../context/CartContext'
 import { getProductById } from '../services/products'
 
@@ -31,6 +32,7 @@ export const ProductDetails = () => {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(false)
   const [quantity, setQuantity] = useState(1)
+  const { admin } = useContext(UserContext);
 
   const toast = useToast()
 
@@ -63,7 +65,7 @@ export const ProductDetails = () => {
   }
 
   return (
-    <Container maxW="5xl">
+   <Container maxW="5xl">
       {loading ? (
         <Flex
           flexDirection="column"
@@ -153,7 +155,27 @@ export const ProductDetails = () => {
                   <NumberDecrementStepper />
                 </NumberInputStepper>
               </NumberInput>
-              <Button
+              {admin ? ( <Button
+                 as={NavLink} 
+                 to={`/editar-producto/${id}`} 
+                w="full"
+                size="lg"
+                py={6}
+                bg="black"
+                color="white"
+                textTransform="uppercase"
+                _hover={{
+                  transform: 'translateY(2px)',
+                  boxShadow: 'lg',
+                  color:"#008100",
+                  transition: 'all .3s ease-in-out',
+                }}
+                
+                fontSize={{ base: '11px', sm: '18px', md: '18px', lg: '18px' }}
+                
+              >
+                Editar Producto
+              </Button>) :  <Button
                 w="full"
                 size="lg"
                 py={6}
@@ -170,7 +192,9 @@ export const ProductDetails = () => {
                 fontSize={{ base: '11px', sm: '18px', md: '18px', lg: '18px' }}
               >
                 Agregar al Carrito
-              </Button>
+              </Button>}
+
+             
             </Flex>
           </Stack>
         </SimpleGrid>
