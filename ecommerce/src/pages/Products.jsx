@@ -11,6 +11,11 @@ export const Products = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const productsPerPage = 6; // Número de productos por página
+  const indexOfLastProduct = currentPage * productsPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+  const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
   const [filters, setFilters] = useState({
     name: "",
     category: "",
@@ -61,21 +66,29 @@ export const Products = () => {
     getProducts();
   }, [filters]);
 
+  const handleChangePage = (newPage) => {
+    setCurrentPage(newPage);
+  };
+
   return (
     <>
       <Filters filters={filters} setFilters={setFilters} />
       <Flex flexWrap="wrap" justifyContent="center" gap={4} m={6}>
         {error && <Text>Ha ocurrido un error</Text>}
         {loading && <IsLoading />}
-        {products.map((product) => (
+        {currentProducts.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}
-        {!loading && !products.length && (
+        {!loading && !currentProducts.length && (
           <Text>No se encontraron productos</Text>
         )}
       </Flex>
       <Center>
-        <Pagination />
+        <Pagination
+          currentPage = {currentPage}
+          totalPages = {Math.ceil(products.length / productsPerPage)}
+          onChangePage = {handleChangePage}
+        />
       </Center>
     </>
   );
