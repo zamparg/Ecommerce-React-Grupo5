@@ -102,7 +102,7 @@ export const Home = () => {
             color="#000000"
             size={{ xl: 'lg', sm: 'lg' }}
           >
-            <b>PROYECTO FINAL CaC REACT # Grupo 5</b>, UN ECOMMERCE PARA APRENDER Y APLICAR{' '}
+            <b>PROYECTO FINAL CaC REACT GRUPO 5</b>, UN ECOMMERCE PARA APRENDER Y APLICAR{' '}
             <b>TECNOLOGIAS WEB.</b>
           </Heading>
           <Button
