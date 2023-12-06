@@ -82,7 +82,7 @@ export const NewProduct = () => {
     toast({
       title: 'Tu Producto fue actualizado con éxito',
       status: 'success',
-      colorScheme: 'pink',
+      colorScheme: 'green',
       duration: 2500,
     })
   
@@ -107,7 +107,7 @@ export const NewProduct = () => {
       toast({
         title: 'Tu Producto fue creado con éxito',
         status: 'success',
-        colorScheme: 'pink',
+        colorScheme: 'green',
         duration: 2500,
       })
     
