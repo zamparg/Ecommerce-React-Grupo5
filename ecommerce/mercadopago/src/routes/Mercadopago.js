@@ -26,8 +26,8 @@ Mercado_Pago.post("/", async (req, res) => {
       items: arrayProductos,
 
       back_urls: {
-        success: "http://localhost:5173/",
-        failure: "http://localhost:5173",
+        success: "https://ecommerce-react-grupo5.vercel.app/mi-cuenta/pedidos",
+        failure: "https://ecommerce-react-grupo5.vercel.app/mi-cuenta/pedidos",
       },
 
       auto_return: "approved",
