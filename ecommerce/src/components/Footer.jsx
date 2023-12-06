@@ -103,7 +103,7 @@ export const Footer = () => {
           </svg>
         </a>
         <a
-          href="https://www.linkedin.com/in/guillermo-zurita-villalonga/"
+          href="https://www.linkedin.com/in/guillermo-zurita-villalonga-81185123/"
           target="_blank"
         >
           <svg
