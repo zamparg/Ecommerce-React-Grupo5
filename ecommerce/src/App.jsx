@@ -35,6 +35,7 @@ function App() {
         <Route path="/productos/:id" element={<ProductDetails />} />
         <Route element={<ProtegedRoute />}>
           <Route path="/nuevo-producto" element={<NewProduct />} />
+          <Route path="/editar-producto/:id" element={<NewProduct />} />
           <Route path="/finalizar-compra" element={<Checkout />} />
           <Route path="/mi-cuenta" element={<Account />}>
           <Route path="pedidos" element={<Orders />} />

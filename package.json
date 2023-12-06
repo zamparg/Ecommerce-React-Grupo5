@@ -1,0 +1,12 @@
+{
+  "name": "ecommerce-react-grupo5",
+  "version": "1.0.0",
+  "description": "Zeze es un proyecto de eCommerce desarrollado por el grupo 5 del programa Codo a Codo 4.0 REACT.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

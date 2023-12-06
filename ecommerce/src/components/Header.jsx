@@ -23,7 +23,7 @@ import { NavLink } from "react-router-dom";
 import { CartContext } from "../context/CartContext";
 import { UserContext } from "../context/UserContext";
 import { CartDrawer } from "./CartDrawer";
-
+/*header*/
 export const Header = () => {
   const { user, handleLogout } = useContext(UserContext);
   const { admin } = useContext(UserContext);
