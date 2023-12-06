@@ -69,7 +69,7 @@ export const Checkout = () => {
     
   const FuncionComprarProductos = async () => {
 
-    const response = await axios.post("https://ecommerce-react-grupo5-ten.vercel.app/Mercado_Pago", cart);
+    const response = await axios.post("https://mp-react-pi.vercel.app/Mercado_Pago", cart);
 
     window.location.href = response.data;
     console.log(response.data);
