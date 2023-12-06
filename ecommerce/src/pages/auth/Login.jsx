@@ -42,7 +42,7 @@ export const Login = () => {
         toast({
           title: 'Has accedido a tu cuenta',
           status: 'success',
-          colorScheme: 'pink',
+          colorScheme: 'green',
           duration: 2500,
           isClosable: false,
         })
@@ -50,7 +50,7 @@ export const Login = () => {
         toast({
           title: 'Usuario o contraseña incorrectos',
           status: 'error',
-          colorScheme: 'pink',
+          colorScheme: 'green',
           duration: 2500,
           isClosable: false,
         })
@@ -59,7 +59,7 @@ export const Login = () => {
       toast({
         title: 'Error en el inicio de sesión',
         status: 'error',
-        colorScheme: 'pink',
+        colorScheme: 'green',
         duration: 2500,
         isClosable: false,
       })
