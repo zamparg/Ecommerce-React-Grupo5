@@ -3,7 +3,6 @@ const mercadopago = require("mercadopago");
 require("dotenv").config();
 const Mercado_Pago = Router();
 
-
 mercadopago.configure({
   access_token: "TEST-1409685999665071-102012-a5522ca90c6c59c680b2346d606d6364-1505905292",
 });
@@ -11,7 +10,7 @@ mercadopago.configure({
 Mercado_Pago.post("/", async (req, res) => {
   try {
     const cart = req.body;
-    //console.log(cart);
+    console.log(cart);
     const arrayProductos = cart.map((product) => ({
       id: product.id,
       title: product.name,
@@ -27,8 +26,8 @@ Mercado_Pago.post("/", async (req, res) => {
       items: arrayProductos,
 
       back_urls: {
-        success: "http://localhost:5173/",
-        failure: "http://localhost:5173",
+        success: "https://ecommerce-react-grupo5.vercel.app/mi-cuenta/pedidos",
+        failure: "https://ecommerce-react-grupo5.vercel.app/mi-cuenta/pedidos",
       },
 
       auto_return: "approved",

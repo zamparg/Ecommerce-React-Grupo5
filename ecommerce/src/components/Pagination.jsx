@@ -1,7 +1,7 @@
 import { ButtonGroup, IconButton } from "@chakra-ui/react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
-export const Pagination = ({ currentPage, onChangePage }) => {
+export const Pagination = ({ currentPage, totalPages, onChangePage }) => {
   const handleDecrement = () => {
     if (currentPage > 1) {
       onChangePage(currentPage - 1);
@@ -9,7 +9,9 @@ export const Pagination = ({ currentPage, onChangePage }) => {
   };
 
   const handleIncrement = () => {
-    onChangePage(currentPage + 1);
+    if(currentPage < totalPages){
+      onChangePage(currentPage + 1);
+    }
   };
 
   return (
@@ -24,6 +26,7 @@ export const Pagination = ({ currentPage, onChangePage }) => {
         icon={<FaArrowRight />}
         variant="outline"
         onClick={handleIncrement}
+        isDisabled={currentPage === totalPages}
       />
     </ButtonGroup>
   );

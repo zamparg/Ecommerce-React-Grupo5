@@ -8,15 +8,15 @@ import {
   DrawerHeader,
   DrawerOverlay,
   Text,
-} from '@chakra-ui/react'
-import { useContext } from 'react'
-import { Link } from 'react-router-dom'
+} from "@chakra-ui/react";
+import { useContext } from "react";
+import { Link } from "react-router-dom";
 
-import { CartContext } from '../context/CartContext'
-import { CartItem } from './CartItem'
+import { CartContext } from "../context/CartContext";
+import { CartItem } from "./CartItem";
 
 export const CartDrawer = ({ isOpen, onClose }) => {
-  const { cart, clearCart } = useContext(CartContext)
+  const { cart, clearCart } = useContext(CartContext);
 
   return (
     <Drawer isOpen={isOpen} placement="right" onClose={onClose}>
@@ -39,20 +39,20 @@ export const CartDrawer = ({ isOpen, onClose }) => {
                 variant="outline"
                 mr={3}
                 onClick={clearCart}
-                fontSize={{ base: '12px', sm: '16px', md: '16px', lg: '16px' }}
+                fontSize={{ base: "12px", sm: "16px", md: "16px", lg: "16px" }}
               >
                 Vaciar Carrito
               </Button>
               <Button
                 bg="#008100"
-                color="black"
+                color="whitesmoke"
                 _hover={{
-                  boxShadow: 'lg',
-                  color:'whitesmoke',
-                  transition: 'all .4s ease-in-out',
-                  bg:'#014F04',
+                  boxShadow: "lg",
+                  color: "whitesmoke",
+                  transition: "all .4s ease-in-out",
+                  bg: "#014F04",
                 }}
-                fontSize={{ base: '12px', sm: '16px', md: '16px', lg: '16px' }}
+                fontSize={{ base: "12px", sm: "16px", md: "16px", lg: "16px" }}
                 as={Link}
                 to="/finalizar-compra"
                 onClick={onClose}
@@ -64,5 +64,5 @@ export const CartDrawer = ({ isOpen, onClose }) => {
         </DrawerFooter>
       </DrawerContent>
     </Drawer>
-  )
-}
+  );
+};

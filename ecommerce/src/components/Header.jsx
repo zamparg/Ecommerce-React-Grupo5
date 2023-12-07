@@ -44,12 +44,17 @@ export const Header = () => {
               <MenuItem as={NavLink} to="/productos">
                 PRODUCTOS
               </MenuItem>
+              <MenuItem as={NavLink} to="/ticket">
+                TICKET
+              </MenuItem>
               <MenuItem as={NavLink} to="/contacto">
                 CONTACTO
               </MenuItem>
-              {admin ? (<MenuItem as={NavLink} to="/nuevo-producto">
-                NUEVO PRODUCTO
-              </MenuItem>) : null}
+              {admin ? (
+                <MenuItem as={NavLink} to="/nuevo-producto">
+                  NUEVO PRODUCTO
+                </MenuItem>
+              ) : null}
               {!user ? (
                 <>
                   <MenuItem as={NavLink} to="/iniciar-sesion">
@@ -117,16 +122,16 @@ export const Header = () => {
               CONTACTO
             </Link>
 
-            {admin ? (<Link
-              as={NavLink}
-              fontWeight="semibold"
-              to="/nuevo-producto"
-              _hover={{ color: "#008100" }}
-            >
-              NUEVO PRODUCTO
-            </Link>) : null}
-
-
+            {admin ? (
+              <Link
+                as={NavLink}
+                fontWeight="semibold"
+                to="/nuevo-producto"
+                _hover={{ color: "#008100" }}
+              >
+                NUEVO PRODUCTO
+              </Link>
+            ) : null}
           </HStack>
         </Show>
         <HStack gap={6}>
