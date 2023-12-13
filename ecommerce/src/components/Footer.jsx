@@ -27,7 +27,7 @@ export const Footer = () => {
           </svg>
         </a>
         <a
-          href="https://www.linkedin.com/in/ivan-gonzalo-tapia-7170b3261"
+          href="https://www.linkedin.com/in/ivan-gonzalo-tapia"
           target="_blank"
         >
           <svg
